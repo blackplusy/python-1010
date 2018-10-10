@@ -1,0 +1,28 @@
+2.文件操作
+	a.创建文件(touch\vi)
+		sudo touch a  			当前目录下创建a文件
+		sudo touch /opt/b c             在/opt目录下创建b文件和当前目录下创建c文件
+		sudo vi test			当前目录下创建test文件
+	补充：重定向(>> > 1>  2>  &>)
+	      打印(echo)
+		echo 1 >> config		追加内容1到config文件中，如果没有该文件，自动创建
+		echo 2 > config1                覆盖内容2到config1文件中，如果没有该文件，自动创建
+		1>    				把正确信息写入到文件中
+		2>				把错误信息写入到文件中
+		&>				所有信息都写入到文件中
+	b.复制文件(cp)
+		sudo cp test  a			复制当前目录下的test到a目录中(a目录存在)
+		sudo cp test  c			复制test文件到当前目录下重命名为c(c目录不存在)
+	c.剪切文件(mv)
+		sudo mv test  b			剪切test文件到当前目录下的b目录
+		sudo mv c     d			重命名当前目录下c为d(d目录不存在)
+	d.删除文件(rm)
+		sudo rm c			删除当前目录下的c文件
+		sudo rm -rf ×			删除当前目录下所有文件
+	e.查看文件(cat\less\more\head\tail\vi)
+		补充：sudo cp /var/log/syslog .
+		sudo cat syslog			不分页查看syslog文件内容
+		sudo less syslog		分页查看syslog文件内容(可以向上、向下翻页，q推出)
+		sudo more syslog		分页查看syslog文件内容(只能向下翻页，q推出)
+		sudo head -4 syslog		查看syslog文件的前4行
+		sudo tail -2 syslog		查看syslog文件的后2行
