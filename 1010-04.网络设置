@@ -1,0 +1,30 @@
+4.ubuntu下网络的设置
+	a.搜索一个IP(没人用)
+		终端--ping 192.168.6.x(x:1-254)
+		[192.168.6.24]
+		补充：查看网卡ifconfig
+	b.修改ubuntu的网卡配置文件
+		sudo vim /etc/network/interfaces
+		增加内容：
+		auto ens33
+		iface ens33 inet static
+		address 192.168.6.24
+		netmask 255.255.254.0
+		gateway 192.168.6.1
+		注意：修改完配置之后必须重启网络
+		sudo /etc/init.d/networking restart
+		注意：如果重启网络后不生效，重启系统
+	c.设置主机名
+		sudo vim /etc/hostname
+		python-server
+		修改后重启系统生效
+	d.绑定主机名
+		sudo vim /etc/hosts
+		增加内容(IP+主机名)
+		192.168.6.24  python-server
+		注意：安装系统后要设置IP、主机名、绑定主机名
+	e.启动模式
+		sudo init 0   	关机
+		sudo init 3	进入到字符模式
+		sudo init 5	进入到图形模式
+		sudo init 6	重启	
