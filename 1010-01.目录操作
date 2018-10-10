@@ -1,0 +1,22 @@
+1.linux下目录操作
+        目录：linux下的文件夹
+        a.创建目录(mkdir)
+                sudo mkdir a            当前目录下创建空目录a
+                sudo mkdir b c          当前目录下创建空目录b和空目录c
+                sudo mkdir /opt/d       在/opt目录下创建空目录d
+                sudo mkdir -p e/f/g     当前目录下创建级联目录
+        b.复制目录(cp)
+                sudo cp -r b a          复制当前目录下的b目录到a目录中(a目录存在
+)
+                sudo cp -r a f          复制a目录到当前目录下重命名为f(f目录不存
+在)
+        c.剪切目录(mv)
+                sudo mv f a             剪切当前目录下f目录到a目录中(a目录存在)
+                sudo mv a g             重命名a目录为g
+        d.删除目录(rmdir\rm -r)
+                sudo rmdir c            删除当前目录下的c目录
+                sudo rm -r c            删除当前目录下的c目录
+        /opt
+                a(a1,a2)
+                b(c,d)
+        sudo mkdir -p /opt/a/{a1,a2} /opt/b/{c,d}
