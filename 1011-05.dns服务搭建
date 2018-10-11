@@ -1,0 +1,46 @@
+dns服务器搭建
+a.访问网站过程
+浏览器---www.sina.com---网络---电信DNS服务器[域名--IP]---sina服务器
+www.baidu.com
+FQDN:完全合格域名
+主机头.域(组织、范围)
+baidu.com    baidu是主机头  .com是域
+www.baidu.com.
+.  .com  baidu.com  yun.baidu.com
+客户端---sina.com----dns服务器---222.76.214.60(sina服务器)
+b.DNS服务器解析类型
+1>域名--IP(正向解析)
+2>IP--域名(反向解析)
+1)dns服务器软件安装
+sudo apt-get install bind9
+2)配置域名解析文件
+sudo vim /etc/bind/named.conf.local 
+zone "heygor.com" {
+        type master;
+        file "db.heygor.com";
+};
+3)编写heygor.com的解析文件
+sudo cp /etc/bind/db.local /var/cache/bind/db.heygor.com 拷贝模板到指定位置命名
+sudo vim /var/cache/bind/db.heygor.com 
+$TTL    604800
+@       IN      SOA     localhost. root.localhost. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      localhost.
+@       IN      A       127.0.0.1
+@       IN      AAAA    ::1
+@       IN      A       192.168.6.119    #添加这一句，heygor.com解析出来的IP
+4)重启bind9服务
+sudo /etc/init.d/bind9 restart
+补充:客户端服务配置
+sudo vim /etc/resolv.conf 
+nameserver 192.168.6.119
+补充：nslookup 域名解析命令
+
+补充：如果出现无法自动安装软件，修改apt源
+sudo vim /etc/apt/sources.list
+执行命令 sudo apt-get update
