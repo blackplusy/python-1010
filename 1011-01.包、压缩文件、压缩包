@@ -1,0 +1,36 @@
+1.包、压缩文件、压缩包
+a.包(tar)
+注意：创建的包文件通常以.tar结尾
+打包(打包打包一个或者多个文件或目录)
+tar -cvf 1.tar 1010/ examples.desktop 	创建包文件1.tar,打包内容1010目录和example.desktop文件
+查看包(查看包中的文件的属性信息)
+tar -tvf 1.tar 				查看包文件1.tar中文件属性信息
+解包
+tar -xvf 1.tar 				解包包文件1.tar到当前目录
+sudo tar -xvf 1.tar -C /opt/            解包包文件1.tar到/opt目录下
+注意：解包到指定目录必须加-C
+b.压缩文件(gzip)
+注意：压缩文件是体积减小，只能压缩文件不能压缩目录
+du -sh examples.desktop 		查看文件example.desktop的大小
+压缩文件(源文件会变成.gz结尾的文件)
+gzip examples.desktop 			压缩文件examples.desktop
+查看压缩文件(压缩属性)
+gzip -l examples.desktop.gz		查看压缩文件examples.desktop.gz的压缩文件属性
+解压压缩文件(只能解压到当前目录)
+gzip -d examples.desktop.gz 		解压压缩文件examples.desktop.gz到当前目录
+c.压缩包(先打包、后压缩)(tar)
+创建压缩包(创建的包文件一般以.tar.gz结尾或者以.tgz结尾)
+tar -czvf 3.tgz 1010/ examples.desktop 创建压缩包3.tgz,打包压缩内容为1010目录和 examples.desktop文件
+查看压缩包
+tar -tzvf 3.tgz				查看压缩包中文件属性信息
+解压压缩包
+tar -xzvf 3.tgz				解压压缩包到当前目录
+d.tar.xz文件解压
+xz -d xxxx.tar.xz----->xxxx.tar
+tar xvf xxxx.tar
+
+
+
+
+
+
