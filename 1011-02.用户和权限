@@ -1,1 +1,66 @@
 
+2.用户和权限
+a.用户
+创建用户
+/etc/passwd				用户的配置文件
+/etc/shadow				用户的密码配置文件
+/etc/group				用户的组配置文件
+sudo adduser simon			创建用户simon
+sudo passwd  simon			修改simon用户密码
+修改用户
+sudo usermod -L  simon			锁定用户(不能登录)
+sudo usermod -U  simon			解锁用户(取消锁定)
+删除用户
+sudo deluser simon			删除用户simon
+b.权限
+查看权限方法
+ll examples.desktop 			查看文件属性信息
+-rw-r--r-- 1 heygor heygor 8980 10月 10 11:55 examples.desktop
+1.文件类型   d:目录  -:普通文件
+2-10.文件权限
+11.文件节点
+12.文件拥有者
+13.文件拥有组
+14.文件大小
+15.最后修改时间
+16.文件名字
+权限的分类
+r(读)
+	目录：可以列表
+	文件：可以查看文件内容
+w(写)
+	目录：可以创建、重命名、删除文件
+	文件：可以修改文件内容
+x(执行)
+	目录：可以进入
+	文件：可以执行，脚本或者二进制文件
+权限分组
+rw-		r--		r--
+拥有者权限     拥有组权限      其他人权限
+系统判断权限过程
+判断用户是否为文件拥有者，如果是，赋予拥有者权限
+如果不是，判断用户是否为拥有组成员，如果是，赋予拥有组权限
+如果不是，赋予其他人权限
+补充:id simon		查看simon用户的组信息
+修改权限的方法
+直接修改(chmod)
+字符方式
+u	拥有者
+g	拥有组
+o	其他人
+a	所有人
+sudo chmod u+x examples.desktop 	修改文件权限，拥有者增加执行权限
+sudo chmod g+x,o+x examples.desktop	修改文件权限，拥有组和其他人增加执行权限
+sudo chmod a-x examples.desktop  	修改文件权限，所有人取消执行权限
+数字方式
+r:4
+w:2
+x:1
+-:0
+sudo chmod 777 examples.desktop		修改文件权限，所有用户拥有读写执行权限 
+sudo chmod 000 examples.desktop		修改文件权限，所有用户没有任何权限
+间接修改(chown)
+通过修改文件属主方式修改
+sudo chown gaga examples.desktop 	修改文件拥有者为gaga
+sudo chown :bin examples.desktop	修改文件拥有组为bin
+sudo chown heygor:heygor examples.desktop 修改文件拥有者和拥有组为heygor
