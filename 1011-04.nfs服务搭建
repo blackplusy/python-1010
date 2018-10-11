@@ -1,0 +1,36 @@
+补充：
+scp xxx root@192.168.1.10:/root        拷贝本地文件到192.168.1.10主机/root下面
+scp root@192.168.1.10:/etc/passwd .    拷贝192.168.1.10主机的/etc/passwd到当前目录下
+
+1.nfs服务搭建
+nfs:网络文件系统，可以在*nix系统中进行文件共享，也是nas(网络附加存储)
+nfs的架构：c/s(c:客户端s:服务端)
+a.软件包的安装
+sudo apt-get install nfs-kernel-server  nfs-common
+nfs-kernel-server  nfs的主服务
+nfs-common	   nfs的客户端服务
+b.nfs服务器的配置
+b1.服务端配置
+sudo vim /etc/exports
+/home *(rw)
+共享的目录为		/home
+可以进行操作的用户	*所有用户
+对目录的权限		rw读写
+重启nfs的主服务
+sudo /etc/init.d/nfs-kernel-server restart
+b2.客户端的配置
+查看nfs服务器的共享目录
+showmount -e nfs服务器的ip
+挂载nfs服务到本地
+sudo mount 192.168.6.119:/home /mnt
+补充:
+取消挂载umount
+客户端------------------网络--------------服务端
+192.168.6.119                             192.168.6.119
+nfs-common                                nfs-kernel-server
+					  /etc/exports
+sudo mount 192.168.6.119:/home /mnt
+通过访问/mnt目录访问192.168.6.119的/home目录
+如果遇到问题：
+nfs的主服务如果不起动，客户端无法链接
+修改完配置文件后，一定要重启服务，重启服务才能应用新的配置文件
