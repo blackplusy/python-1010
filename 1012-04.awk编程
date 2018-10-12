@@ -15,3 +15,69 @@ NF						每行有多少列
 head -2 /etc/passwd|awk -F ":" '{print NF}'
 NR						标识当前行号
 head -10 /etc/passwd |awk -F ":" '{print NR,$1}'
+awk的关系操作符
+== 	等于
+！=	不等于
+>=	大于等于
+<=	小于等于
+>	大于
+<	小于
+awk的逻辑操作符
+&&	逻辑与 真&&真==>真
+||	逻辑或 假||假==>假
+！	逻辑非 
+
+awk -F ":" ' NR==8 {print}' /etc/passwd		打印第8行内容
+awk -F ":" 'NF>4{print}' passwd 		打印字段数(列数)大于4的行
+awk -F ":" 'NR>=5&&NR<=10{print NR,$0}' passwd  打印第5行到第10行的数据
+awk -F ":" '$3>=30&&$3<=100{print $1,$3}' passwd 打印文件第3列大于等于30并且小于等于100的所有数据
+
+awk -F “分隔符” ‘BEGIN{ 处理文件前执行的代码 }{ 处理文件过程中执行的代码 }END{ 处理文件后执行的代码 }’
+输出顶部增加 heygor do this
+输出底部增加 finished
+awk -F ":" 'BEGIN{print "heygor do this"}{print $1}END{print "finished"}' passwd 
+需求：打印字段数大于4的总行数
+补充：wc -l  统计、计算
+awk -F ":" 'NF>4{print}' /etc/passwd |wc -l
+awk -F ":" 'BEGIN{ count=0 }NF>4{ count++ }END{ print count }' passwd 
+把AWK代码写入独立文件执行
+文件test：
+BEGIN{
+        FS=":"
+        count=0
+}
+{
+        if( NF>4 ){
+
+                count++
+        }
+}
+END{
+        print count
+}
+执行时候
+awk -f test passwd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
