@@ -57,6 +57,15 @@ if [ 条件 ];then
 else
 	执行语句
 fi
+例子：
+read -p "input your name：" name
+#echo $name
+if [  $name = "heygor" ]  ;then
+        echo 'its me!!'
+else
+        echo 'which one?'
+fi
+
 c.多分支      
 if [ 条件 ];then
 	执行语句
