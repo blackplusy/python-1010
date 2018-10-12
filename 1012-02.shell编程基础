@@ -1,0 +1,97 @@
+7.变量的赋值
+1.直接赋值
+等号左侧为变量名，右侧为变量值
+a=20
+a='heygor'
+2.间接赋值
+``反斜线代表先执行斜线中命令，然后把执行结果赋予变量
+name=`hostname`
+echo $name
+3.交互式赋值
+read命令可以接受键盘的输入，并且赋值给变量
+read -p "insert your name: " name
+echo $name
+8.变量的位置参数进行赋值
+通常脚本后面跟的第一个参数是$1,第二个参数$2.....
+#3.sh
+findpath="$1"
+find $findpath -name 3.sh
+执行
+./3.sh /home/heygor/1012
+#4.sh
+echo "第一个参数是 $1"
+echo "第二个参数是 $2"
+执行
+./4.sh 1000 'gogo'
+9.变量的运算
+a.通过let方式
+a=100
+b=30
+let c=a+b
+echo $c
+b.通过$()方式
+a=20
+b=30
+c=$((a+b))
+echo $c
+c.通过``方式
+now=`date |awk -F " " '{print $5}'`
+echo $now
+==================================================
+1.条件判断
+shell编程中有test命令，可以通过你man test查看条件判断的语法
+条件判断在脚本中以if关键字开头fi关键字结尾，test等价于[]
+a.单分支
+if [ 条件 ];then
+	执行语句
+fi
+例子：
+read -p "input your name：" name
+echo $name
+if [ $name=='heygor' ];then
+        echo 'its me!!'
+fi
+b.双分支
+if [ 条件 ];then
+	执行语句
+else
+	执行语句
+fi
+c.多分支      
+if [ 条件 ];then
+	执行语句
+elif [ 条件 ];then
+	执行语句
+...
+else
+	执行语句
+fi
+d.条件判断常见参数
+	-f 是否存在(文件)
+		如果条件成立，返回码$?=0
+	-e 不管是文件还是目录存在条件就成立
+	-n 字符串为非空就是成立
+	-z 字符串长度为0就成立
+	字符串的对比== ！==不能用于数值大小的判断
+	-eq   等于
+	-ne   不等于
+	-lt   小于
+	-gt   大于
+	-gte  大于等于
+	-lte  小于等于
+	逻辑判断符号
+	-a    and  同时满足条件
+	-o    or   满足一个条件即可
+例子：
+if [  -f /etc/passwd  ];then
+        echo 'filexists!'
+else
+        echo 'mou a'
+fi
+例子：
+ls /etc/passwd1
+if [ $? -eq 0 ];then
+        echo 'yes!!'
+else
+        echo 'WTF'
+fi
