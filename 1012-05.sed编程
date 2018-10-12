@@ -1,0 +1,37 @@
+1.sed
+字段编辑和字段替换
+删除指令 d 在查看时候屏蔽某些信息
+删除所有行 	sed -e 'd' 	passwd
+删除第一行	sed  -e '1d' 	passwd
+删除1到3行	sed -e '1,3d' 	passwd
+删除第1,3行	sed -e '1d;3d' 	passwd
+删除包含root关键字的行  sed -e '/root/d' passwd
+删除daemon开头的所有行  sed -e '/^daemon/d' passwd
+删除bash结尾的所有行	sed -e '/login$/d' passwd
+删除所有空行		sed -e '/^$/d'    passwd
+删除所有以#开头的行	sed -e '/^#/d'    passwd
+
+打印所有行		sed -n -e 'p' passwd 
+打印第1行和第3行	sed -n -e '1p;3p' passwd
+打印管理员开头的行	sed -n -e '/^root/p' passwd
+
+替换命令，显示、打印时候替换
+搜索每行第一个root关键字为admin sed -e 's/root/admin/' passwd
+替换每行n替换为admin  		sed -e 's/n/admin/g'   passwd
+替换2-10行：为-			sed -e '2,10s/:/-/g'   passwd
+
+把结果保存到源文件		sed -i '/^root/d' passwd
+
+使用域进行定位
+echo "12-10-2018" |awk -F "-" '{print $3"-"$2"-"$1}'
+echo "12-10-2018" |sed -r 's/(..)-(..)-(....)/\3-\2-\1/'
+echo "come on,baby" |sed -r 's/(.*),(.*)/\2,\1/'
+
+删除每行第二个字符
+cat passwd |sed -r 's/(.)(.)(.*)/\1\3/'
+删除每行的最后一个字符
+echo "can you see me?" |sed -r 's/(.*)(.)/\1/'
+
+
+
+
