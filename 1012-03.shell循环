@@ -1,0 +1,39 @@
+2.循环
+a.for循环
+for循环就是遍历，访问序列中每一个元素
+for i in 1 2 3 4
+do
+        echo "no.$i"
+done
+
+for i in `seq 10`
+do
+        sudo useradd user$i
+done
+echo "finish"
+
+for ((i=1;i<=10;i++))
+do
+        echo $i
+done
+问题：判断局域网中那些IP可以使用？哪些不能使用？
+b.while循环
+while 条件
+do
+	执行语句
+done
+
+while True
+do
+	执行语句
+done
+rannum=$(($RANDOM%10))
+echo $rannum
+guest=100
+
+while [  "$guest" -ne "$rannum"  ] 
+do
+        read -p "guest number : " guest
+done
+
+问题：每次输入提示大了或者小了
