@@ -20,6 +20,7 @@ b.创建字典
 一般字符串或者数字作为键
 dic={'name':'heygor','age':18}
 dic={'age':20}
+dic['jingli']=['kill']
 
 c.访问字典
 dic={'name':'gaga','QQ':110}
