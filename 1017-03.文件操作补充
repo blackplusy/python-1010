@@ -28,3 +28,7 @@ for i in file.readlines():
                 print('tel is here')
 file.close()
 ~                  
+
+创建文件，文件中输入用户名 电话
+接受键盘输入一个名字，如果名字存在于文件中，输出对应电话号码
+如果名字不存在于文件中，提示重新输入
