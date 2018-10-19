@@ -1,0 +1,58 @@
+学习目标
+掌握装饰器写法及作用
+
+课程内容
+a.装饰器
+b.装饰器例子
+
+a.装饰器
+在不修改原来函数源代码情况下给函数赋予新功能
+例子：
+银行转账
+	rich---转账--heygor
+	1.rich账户中减少金额
+		增加写入日志功能(记录什么时间，哪个账户，什么操作)
+	2.heygor账户中增加金额
+		增加写入日志功能(记录什么时间，哪个账户，什么操作)
+
+b.装饰器例子
+
+例子1：
+import time
+
+def jisuan(func):
+        def zsq():
+                starttime=time.time()
+                func()
+                endtime=time.time()
+                sec=endtime-starttime
+                print('消耗时间为%d'%sec)
+        return zsq
+@jisuan
+def func():
+        print('hello')
+        time.sleep(1)
+        print('world')
+
+f=func
+f()
+例子(带有参数的装饰器：
+import time
+
+def dec(func):
+        def jisuan(a,b):
+                startime=time.time()
+                func(a,b)
+                endtime=time.time()
+                sec=endtime-startime
+                print('time is %d'%sec)
+        return jisuan
+
+@dec
+def func(a,b): 
+        print('a+b=?')
+        time.sleep(1)
+        print('its',a+b)
+
+f=func
+f(4,5)
