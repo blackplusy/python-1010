@@ -1,0 +1,58 @@
+学习目标
+掌握多态的概念
+
+课程内容
+a.什么是多态
+b.多态的实例
+
+a.什么是多态
+多态：可以理解为多种形态，一个方法能表现出不同的形态，同一操作方法针对于不同对象，有不同的解释，产生不同的结果
+
+b.多态的实例
++：多态的实现
+a=20
+b=10
+print(a+b)
+a='20'
+b='10'
+print(a+b)
+
+例子：
+class animal:
+        def jiao(self):
+                print('ao~~~~~~~~')
+class dog(animal):
+        def jiao(self):
+                print('wang！！！！')
+class cat(animal):
+        def jiao(self):
+                print('miao~~~~~~')
+
+def test(obj):
+        obj.jiao()
+
+a=animal()
+a.jiao()
+b=dog()
+c=cat()
+test(b)
+test(c)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
