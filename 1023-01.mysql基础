@@ -132,7 +132,54 @@ b.mysql基础
 	语法：truncate table 表;
 	例子：删除kr表中所有数据
 	truncate table	kr;
+9.数据的查询
+	查询可以查询指定行，指定的列，指定行的列
+	语法：select 列 from 表 where 条件;
+	注意：select后面from前面和列相关的，where条件和行相关的,*代表所有列
+	查询kr表中所有的数据
+	select  * from kr;
+	查询kr表中泡菜名是bangzi的所有信息
+	select * from kr where pname='bangzi';
+	查询kr表中所有的泡菜名称
+	select pname from kr;
+	查询泡菜价格是250的泡菜名字
+	select pname from kr where price=250;
 
+10.where条件(子句)
+	简单查询的语法：
+	select 列 from 表 where 条件;
+	a.比较运算符
+		>	大于
+		<	小于
+		=	等于
+		<=	小于等于
+		>=	大于等于
+		!=	不等于
+		<>	不等于
+	例子：查询kr表中价格低于150的所有商品信息
+	select * from kr where price<150;
+	例子：查询kr表中价格不等于100的所有信息
+	select * from kr where price<>100;
+	select * from kr where price!=100;
+	b.关系(逻辑)
+		and	同时满足
+		or	满足一个即可
+		not	不满足条件
+	例子：查询kr表中价格低于300并且商品名称是pc的所有信息
+	select * from  kr where price<300 and pname='pc';
+
+
+
+
+
+
+
+
+
+
+
+	
+	
 
 
 
