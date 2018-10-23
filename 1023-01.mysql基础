@@ -196,6 +196,19 @@ b.mysql基础
 	没有任何值，没有任何数据类型，不能用于比较和运算，查询时候使用is null或者is not null
 	例子：查询ecs_goods表中suppliers_id为空的商品名称
 	select goods_name from ecs_goods where suppliers_id is null;
+	f.in
+	在...里面(或的关系)
+	例子：查询ecs_goods表中商品名称是KD876或者诺基亚的商品名称和本店售价
+	select goods_name,shop_price from ecs_goods where goods_name in('KD876','诺基亚');
+	g.常见函数
+	upper      大写
+	lower	   小写
+	round	   小数点后保留几位
+	distinct   去重
+	select goods_name,lower(goods_name) from ecs_goods;
+	avg()	   平均值
+	select avg(shop_price),round(avg(shop_price),2) from ecs_goods;
+	select distinct(cat_id) from ecs_goods;
 
 	
 	
