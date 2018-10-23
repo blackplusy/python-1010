@@ -34,3 +34,72 @@ b.mysql基础
 	管理员登录本地数据库
 	mysql -u root -h 127.0.0.1 -p
 	管理员登录IP为127.0.0.1的数据库
+	b5.mysql概念
+	数据库分为2部分：数据库软件、数据库数据
+	常说的数据库是数据库数据
+	数据库是由表(表格)组成
+	表是由数据组成
+	b6.基础命令
+	show databases;
+	查看当前有哪些数据库
+	select user();
+	查看当前用户用户名
+	select database();
+	查看当前数据库的名字
+	use mysql;
+	切换数据库为mysql
+	show tables;
+	查看当前数据库中有哪些表
+	select * from user;
+	查看user表中所有数据
+4.表结构的创建
+	表：类似于表格，有行、有列、有名字
+	4.1 数据类型
+	数字	int			123   456
+	字符	char   varchar		‘heygor’ ‘1234’
+	日期	date			'2018-10-23'
+	4.2 表结构的创建
+	语法：create table 表(
+		列名(字段)  数据类型,
+		列名(字段)  数据类型,
+		....
+		);
+
+	例子：创建表韩国(kr),泡菜名字(pname),字符类型，泡菜价格(price),数字类型，出厂日期(ddate),日期类型
+	create table kr(
+		pname   char(10),
+		price   int,
+		ddate	date
+		);
+	补充：创建数据库 create database 数据库名;
+	创建数据库test:create database test;
+	补充：查看表结构 desc 表名;
+	查看kr表的表结构  desc kr;
+	4.3 约束
+	主键：列中的数据不能为空，而且不能重复(唯一)，每张表中只能有一个
+	唯一：列中的数据不能重复，作为主键的补充
+	非空：列中的数据不能为空，只要向表中新增数据，就一定要向该列操作
+	检查：列中的数据是否满足条件
+	外键：一张表中列的数据依赖于另外一张表中的数据
+	补充：
+	create table 表(
+		列 数据类型 primary key，  主键约束
+		列 数据类型 unique，	   唯一约束
+		列 数据类型 not null，	   非空约束
+		列 数据类型 check(检查条件),检查约束
+		列 数据类型 references 被参考表(被参考列),外键约束
+		);
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
