@@ -1,0 +1,36 @@
+1.数据库
+存储数据的地方
+2.常见数据库
+关系型数据库
+	a.informix	IBM+HP   军、政、运、银
+	b.db2		IBM	 军、政、运、银
+	c.oracle	甲骨文   中大型企业
+	d.mysql		甲骨文	 互联网企业
+	e.sqlserver	微软
+非关系型数据库
+	a.mongodb	大数据、爬虫
+	b.redis		缓存、验证、消息队列
+	c.cassandra	facebook
+3.mysql数据库
+a.安装mysql相关软件
+	安装mysql的服务端
+	sudo apt-get install mysql-server(安装是偶会提示输入新的数据库密码，不要以数字开头)
+	安装mysql的客户端
+	sudo apt-get install mysql-client	
+	安装相关的库文件
+	sudo apt-get install libmysqlclient-dev
+b.mysql基础
+	b1.mysql的主服务(mysqld)
+	检查mysqld进程是否正常运行
+	ps -ef | grep mysqld
+	b2.mysql的端口(3306)
+	检查mysql端口
+	netstat -an | grep 3306
+	b3.mysql的管理员
+	root
+	b4.mysql的登录
+	mysql
+	mysql -u root -p
+	管理员登录本地数据库
+	mysql -u root -h 127.0.0.1 -p
+	管理员登录IP为127.0.0.1的数据库
