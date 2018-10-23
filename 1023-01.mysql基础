@@ -168,6 +168,37 @@ b.mysql基础
 	例子：查询kr表中价格低于300并且商品名称是pc的所有信息
 	select * from  kr where price<300 and pname='pc';
 
+	补充：ecshop网站：
+	主页地址：192.168.7.84/ecshop
+	后台地址：192.168.7.84/ecshop/admin
+	用户名：admin
+	密码：	admin888
+	mysql链接：mysql -u root -h 192.168.7.84 -p
+	mysql密码：test
+	ecshop数据库表结构说明：http://book.ecmoban.com/images/db.htm
+	c.区间(between...and...)
+	区间是包括两个端点，小在前，大在后
+	例子：查询ecs_goods表中所有数据，本店售价范围1388到1999之间的商品名称和本店售价
+	select goods_name,shop_price from ecs_goods where shop_price>=1388 and shop_price<=1999;
+	select goods_name,shop_price from ecs_goods where shop_price between 1388 and 1999;
+	d.模糊查询
+	当信息不完整时候使用，通常是和字符类型一起使用
+	like   	像
+	_	一个字符
+	%	任意个字符
+	例子：查询ecs_goods表中商品名称是诺基亚开头的商品名称
+	select goods_name from ecs_goods where goods_name like '诺基亚%';
+	例子：查询ecs_goods表中商品名称是6结尾的所有商品名称和市场售价
+	select goods_name,market_price from ecs_goods where goods_name like'%6';
+	例子：查询ecs_goods表中商品名称是6个字符的商品名称
+	select goods_name from ecs_goods where goods_name like '______';
+	e.空值查询
+	没有任何值，没有任何数据类型，不能用于比较和运算，查询时候使用is null或者is not null
+	例子：查询ecs_goods表中suppliers_id为空的商品名称
+	select goods_name from ecs_goods where suppliers_id is null;
+
+	
+	
 
 
 
