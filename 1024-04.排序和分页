@@ -1,0 +1,23 @@
+排序
+语法：select 列 from 表
+	where 条件
+	group by 分组条件
+	having 分组后过滤条件
+	order by 排序条件;
+
+顺序(从小到大) 
+	order by 列;
+	order by 列 asc;
+逆序(从大到小)
+	order by 列 desc;
+
+例子：查询ecs_goods表中商品名称，本店售价，按照cat_id顺序进行排序
+select goods_name,shop_price from ecs_goods order by cat_id;
+例子：查询ecs_goods表中商品名称和分类id，按照分类id从大到小进行排序
+select goods_name,cat_id from ecs_goods order by cat_id desc;
+
+分页(limit)
+例子：查询ecs_goods表中前8行数据中的商品名称和市场售价
+select goods_name,market_price from ecs_goods limit 8;
+例子：查询ecs_goods表中9-16行商品名称和市场售价
+select goods_name,market_price from ecs_goods limit 8,8;
