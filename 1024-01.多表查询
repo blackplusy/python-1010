@@ -36,3 +36,67 @@ d.过滤
 查询商品本店价格低于2000的商品分类名称
 查询分类名称是手机类型并且商品名称是诺基亚开头的所有信息
 
+3.左联查询、右联查询
+左联查询(左表中数据都有)
+左联查询语法：
+select 列 from 表1 left join 表2 on 表1.列=表2.列;
+左联查询结果：内联查询结果+左表中有，右表没有的，右表对应位置设置为空
+create table a(
+	a int
+);
+
+create table b(
+	a int,
+	b char(4)
+);
+
+insert into a values(1),(2),(3);
+insert into b values(1,'a'),(2,'b'),(4,'d');
+
+select * from a left join b on a.a=b.a;
+select * from a ,b where a.a=b.a;
+右联查询（右表中所有数据都有）
+语法：select 列 from 左表 right join 右表 on 左表.列=右表.列;
+
+
+2.jpg
+a.
+select  s.name   
+from  student s,achievement a 
+where s.id=a.id
+and a.mark>85;
+
+b.
+select count(*) from achievement where mark>=90;
+
+c.
+insert into achievement values(7,80);
+
+d.
+update achievement set mark=87 where id=3;
+
+e.
+delete from student where name='Betty';
+delete from achievement where id=6;
+
+4.jpg
+a.
+select s#,grade from sc where c#='C2';
+b.
+select sname from s where sname like 'D%';
+c.
+select   s.s#,s.sname
+from s,sc,c
+where s.s#=sc.s# and sc.c#=c.c# and c.cname='Maths';
+d.
+select s# from sc where s# in ('C2','C4');
+
+1.jpg
+a.
+select * from test1 where department='计算机系' and place='北京';
+b.
+update test set department='信息学院' where department='计算机系';c.
+select   t1.no,t1.name,t2.grade,tw.courses
+from test1 t1,test2 t2
+where t1.no=t2.no
+and t2.grade>=75;
