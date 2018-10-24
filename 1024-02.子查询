@@ -1,0 +1,49 @@
+子查询
+一条SQL语句的执行依赖于另外一条SQL语句的执行结果(新增、修改、删除、查询)
+
+查询商品名称是KD876的分类名称是什么？
+列：
+	商品名称
+	分类名称
+表：
+	ecs_goods
+	ecs_category
+a.查询ecs_goods表中商品名称为KD876的cat_id
+select cat_id from ecs_goods where goods_name='KD876';
+
+b.查询ecs_category表中cat_id为上面查询出来结果的cat_name
+select cat_name from ecs_category where cat_id=4;
+select cat_name from ecs_category where cat_id=(select cat_id from ecs_goods where goods_name='KD876');
+注意：子查询分为单行子查询，多行子查询。
+单行子查询是查询子句返回一个结果，可以使用=
+多行子查询是查询子句返回多个结果，使用in
+
+5.bmp
+select avg(english) from mark;
+select m.math,c.name,c.address,c.telno
+from  cust c,mark m
+where c.studentno=m.studentno
+and c.studentno in (11,22,33,44,55);
+
+7.jpg
+(1)查询c表中满足条件的c#
+select c# from c where cn='税收基础';
+查询sc表中满足c#为上面查询结果的s#
+select s# from sc where c# in(select c# from c where cn='税收基础')
+查询s表中满足s#为上面查询出来结果的学号和姓名
+select s#,sn from s where s# in(select s# from sc where c# in(select c# from c where cn='税收基础'));
+(2)
+select s# from sc where c#='C2';
+select sn,sd from s where s# in(select s# from sc where c#='C2');
+(3)
+
+select sn,sd from s where s# in(select s# from sc where c!='C5');
+
+
+
+
+
+
+
+
+
