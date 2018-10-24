@@ -1,0 +1,44 @@
+分组
+按照某种属性进行分类
+1.分组函数(聚合)
+分组函数通常是和分组一起使用，但是也可以单独使用
+max()   最大
+min()	最小
+avg()	平均
+sum()	求和
+count()	计数
+例子：查询ecs_goods表中最高本店售价，最低本店售价，平均本店售价
+select max(shop_price),min(shop_price),avg(shop_price) from ecs_goods;
+2.分组
+语法：select 列 from 表 
+		where 条件
+			group by 分组条件
+				having 分组后过滤条件;
+
+分组条件：每后面跟的就是分组条件
+select goods_name from ecs_goods group by goods_name;
+select goods_name,cat_id from ecs_goods group by cat_id;--xxx
+select * from ecs_goods group by goods_name;--xxx
+
+例子：查询ecs_goods表中数据，每种分类id有多少种产品，最高本店售价是多少，要求显示分类id，最高本店售价
+select   cat_id,max(shop_price)
+from ecs_goods
+group by cat_id;
+例子：查询每种分类有多少种产品，要求显示分类名称，产品数量
+select c.cat_name,count(*)
+from ecs_goods g,ecs_category c
+where g.cat_id=c.cat_id
+group by c.cat_name;
+
+having 分组后过滤，可以直接跟分组函数
+where  分组前过滤，不能跟分组函数
+例子：查询商品数量超过6个的分类名称
+select c.cat_name,count(*) from ecs_goods g,ecs_category c where g.cat_id=c.cat_id group by c.cat_name having count(*)>6;
+
+补充：
+分组可以单分组，也可以多分组（group by 列1,列2....）
+
+
+
+
+
