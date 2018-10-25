@@ -64,6 +64,56 @@ g.文档的删除
 	db.xiyouji.remove({age:100})
 	删除所有文档
 	db.xiyouji.remove({})
+h.文档的查询
+	查询所有文档内容
+	db.xiyouji.find()
+	查询指定文档内容
+	db.xiyouji.find({age:18})
+	查询指定文档的指定属性
+	db.xiyouji.find({age:18},{_id:0,name:1})
+f.查询表达式
+	比较
+		$lt	小于
+		$gt	大于
+		$lte	小于等于
+		$gte	大于等于
+		$ne	不等于
+	db.xiyouji.find({age:{$gte:30}})
+	db.xiyouji.find({age:{$ne:18}})
+	关系
+		$and	同时满足条件
+		$or	满足一个即可
+	db.xiyouji.find({$and:[{age:{$lte:30}},{name:'8jie'}]})
+	db.xiyouji.find({$or:[{name:'baigu'},{name:'rabbit'}]})
+	存在性
+		$exists
+	db.xiyouji.find({age:{$exists:1}})
+	数据类型判断
+		$type
+	double 1
+	string 2
+	object 3
+	array  4
+	binary data 5
+	object id   7
+	boolean     8
+	date        9
+	null	    10
+	db.xiyouji.find({age:{$type:1}})
+g.文档的修改
+	db.集合.update(查询表达式，新值，选项)
+	全部替换文档
+	db.xiyouji.update({age:30},{age:100})
+	修改指定文档
+	db.xiyouji.update({age:40},{$set:{age:800}})
+	删除某个列
+	db.xiyouji.update({age:800},{$unset:{age:800}})
+	重命名	
+	db.xiyouji.update({name:'bluecow'},{$rename:{'age':'fangling'}})
+	列增长
+	db.xiyouji.update({age:180},{$inc:{age:-30}})
+	注意：修改如果找到匹配的行只修改一行，如果需要使用修改多行，用multi选项
+	db.xiyouji.update({age:18},{$set:{name:'heygor'}},{multi:true})
 
 
 
