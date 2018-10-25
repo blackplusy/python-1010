@@ -114,6 +114,14 @@ g.文档的修改
 	db.xiyouji.update({age:180},{$inc:{age:-30}})
 	注意：修改如果找到匹配的行只修改一行，如果需要使用修改多行，用multi选项
 	db.xiyouji.update({age:18},{$set:{name:'heygor'}},{multi:true})
+h.安装pymongo软件
+	sudo pip3 install pymongo
+	import pymongo
+	#设置链接参数
+	conn=pymongo.MongoClient(host='127.0.0.1',port=27017)
+	db=conn.test
+	db.xiyouji.insert({'name':'kouniqiwa'})
+~                                          
 
 
 
