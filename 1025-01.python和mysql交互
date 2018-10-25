@@ -1,0 +1,39 @@
+课程目标
+掌握python和数据库的交互
+
+课程内容
+a.mysql基础
+b.python和数据库的交互
+
+a.mysql基础
+	mysql的管理员：root
+	mysql端口：    3306
+	select 列 from 表 where 条件;
+
+b.python和数据库的交互
+	1.安装pymysql模块
+		a.通过pip安装
+		sudo pip install pymysql
+		b.通过压缩包安装
+		官网下载.tar.gz
+		解压压缩包
+		进入到压缩包解压目录
+		sudo python3 setup.py install
+	2.python操作数据库
+	#coding=utf-8
+	import pymysql
+	conn=pymysql.connect(host='localhost',user='root',passwd='test',db='test',port=3306,charset='utf8')
+	#连接的主机名或者ip host
+	#连接使用的用户名   user
+	#链接使用用户密码   passwd
+	#链接哪个数据库     db
+	#链接端口           port
+	#字符集             charset
+	cur=conn.cursor() #获取一个游标
+	cur.execute('select * from kr') #所需要执行的语句
+	data=cur.fetchall()#获取执行语句的执行结果
+	for i in data:
+        	print(i)
+	cur.close()     #关闭游标
+	conn.close()    #关闭链接，释放数据库资源
+
