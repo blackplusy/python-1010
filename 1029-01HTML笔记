@@ -53,6 +53,12 @@ HTML
 		单选框：<input type="radio" checked表标可以被选中checked=checked
 		复选框 :<input  type="checkbox"与单选框性质一样
 		下拉列表:<select><option selected>selected被选中的属性
+		多行文本框:<textarea cols=多行文本框可见列数  rows=多行文本框可见行数
+		按钮:
+			提交按钮:<input type="submit"
+			重置按钮:<input type='reset'
+			正常按钮 ：<input type='button'
+		隐藏框:<input type="hidden"
 		HTML5的标签:
 		网址框 <input type="url"
 		邮箱 :<input type="email"
@@ -61,3 +67,52 @@ HTML
 		文件上传:<input type="file"
 		滑动条:<input type='range"
 			
+表格:
+		居中:<center></center>
+		表格标签<table>
+		表行：<tr>
+		表列,表元,单元格:<td>
+		行跨度 rowspan
+		列跨度 colspan
+用表格来做布局:
+		表格做完布局后，可以iframe浮动框架来进行配合使用 
+frameset框架集:
+		frameset
+			frame
+		解决:局部刷新
+			
+	
+CSS
+	1、缩写:Cascading Style Sheet 层叠样式表
+	2、w3c组织网页标准 :    结构  表现  行为
+	                      结构-----HTML,HTML只提供结构，<font>废弃
+				表现-----CSS，美化网页
+				行为-----javascript编码动态效果
+	3、CSS作用：把html里面元素进行字体、背景、边框方面的美 化
+	4、三种最基本的选择器:
+		标签选择器:把html的标签拿出来，直接跟 {},{}写上css语句，每个句子用;(分号)隔开 
+		类别选择器:在style,用.（点）+变量名来定义，在html文档中标签属性上<p class=“变量名 ”
+		id选择器:在style里用#（#号）+变量名来定义，在html文档中标签属性上<p id='变量名'
+	如果标签选择器、类别选择器、id选择器一起使用，id选择器优先级最高，类别选择器其次，最后是标签选择器
+	类别选择器与id选择器的区别：
+		class可以允许一个元素有多个class选择器
+		id一个元素只能有一个id选择器
+		关于字体的css样式:
+			font-family:定义字体名字
+			font-size:定义字体的字号
+			color:定义字体的颜色
+			font-weight:bold字体加粗
+			font-style:italic字体倾斜
+			text-decoration:underline下划线
+			text-align:center文字居中
+
+	*全局选择器
+	
+	
+		
+		
+		
+
+				
+		
+		
