@@ -1,0 +1,63 @@
+HTML
+	1、缩写Hyper Text Markup Language 超文本标记语言
+	2、它不是一种编程语言，解释性的标识语言，超文本指做过超链接的文本
+	3、linux做网页环境:
+		apache2 apache(web服务器的应用)
+		apt install apache2
+		安装成功
+		/var/www/html,所做网页都在这个目录结构下
+		静态网站跟数据库没有关系，没有注册登录，没有留言板，论坛
+		动态网站信息是及时更新
+		index.html默认网站的首页名字
+	4、html结构
+		<html>
+			头部<head></head>
+			内容<body></body>
+		</html>
+		<title></title>写在<head></head>中间，表示网页标签
+		<meta charset=utf8>指定网页的编码格式 utf8
+		<h1>------<h6>六级标题
+		<p>网页正文</p>段落标记
+		img是图片标签，同时也是一个单标签，width宽度属性  height高度属性
+		字体路径  usr/share/fonts
+		<font>字体标签 face字体名称 color颜色  size=1,2,3,5,6,7
+		列表
+			有标记列表：前面有圆点 :无序列表(在项目前面打标记）
+				标记默认是圆点，可以是方形，空心圆
+				type="square"方形  type="circle"空心圆
+				<ul> <li></li></ul>
+				有序列表 (在项目前面打标记，用1,2,3,4)
+				ol type可以设置类型<type="a A 1 I i" start=从哪个数字开始
+				<ol> <li></li></ol>
+			无标记列表
+				dl dt dd 
+				dt和dd有缩进关系,dl dt dd 都没有标记
+				dl做主标题  dt二级标题 dd正文 
+		单标签有两个:<img> <br>换行<br/></br>都是换行
+		水平线: <hr/>
+		中文字体:utf8 gb2312 gbk 
+		繁体中文字: big5
+		网页超链接标签 <a href='地址'>做链接的词</a>
+		绝对地址:/usr/lib/abc.html 指自己电脑具体目录结构（从根目录）
+		相对地址:相对于自己的网页的地址  ..父目录  ./当前目录
+表单元素:
+	
+		登录和注册
+		表单:<form action(表示的提交的地址) method=(get post)提交的方式>
+			get post区别:
+			1\get是不安全的 post安全的
+			2、get一般传送文本,post没有大小限制（视频)
+			
+		单行文本框  ：<input type="text">必须有 name=
+		密码框 :<input type="password">必须有name=
+		单选框：<input type="radio" checked表标可以被选中checked=checked
+		复选框 :<input  type="checkbox"与单选框性质一样
+		下拉列表:<select><option selected>selected被选中的属性
+		HTML5的标签:
+		网址框 <input type="url"
+		邮箱 :<input type="email"
+		数字:<input type="number"
+		颜色:<input type="color"
+		文件上传:<input type="file"
+		滑动条:<input type='range"
+			
