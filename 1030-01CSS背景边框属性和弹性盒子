@@ -1,4 +1,4 @@
-CSS选择器
+	CSS选择器
 	基本选择器:标签 id class
 	全局选择器
 	伪类选择器:
@@ -59,16 +59,63 @@ CSS选择器
 		border-left
 	以上盒子模型只适合pc端布局
 	普遍大小:1190*800
-	1、做一个项目时间(100页面)
-	2、技术量化
+	
 	弹性盒子:
 		手机:苹果:安卓
 		用在移动端
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		
 		弹性盒子，希望盒子随着宽度改变而改变
 		盒子不能定义大小
 		display:flex;指外层盒子，指定弹性盒子
-		flex:1;均分	
+		flex:1;均分		
+布局兼容性:
+	浏览器对px单位解释一样，造成布局上掉块,尽量少出现大的px数据(100)
+	引入盒子技术:整体靠左: float left左浮动 整体靠右 float right
+		    浮动以后盒子自动找边缘
+		    不浮动div统治一行,设置浮动可以让div与其它元素和谐在一行,div块状元素
+	            块状元素：统治一行 div p li dl dt 
+		    行内元素：在一行 a img span
+	字体的兼容:插件
+布局思想:
+	1、确定最外层的大盒子(服从整体性)
+	2、按行的方式来切分整体的盒子
+	   按行的方式来确定大盒子里的子盒子
+	3、在行里确定整体居左或整体居右，盒子模型靠左靠右
+	4、确定盒子的大体样子后，可以添加元素
+定位:
+	position:共有5种定位
+		默认:static
+		常用:relative相对定位
+		    absolute绝对定位
+		    fixed固定定位
+		    inherit与继承相关的定位 
+		relative:
+			相对,不脱离文档流,不会改变盒子的大小
+			left right top bottom
+		absolute:
+			绝对，脱离文档流,不会改变盒子的大小
+		父盒子relative
+		子盒子absolute
+		父盒子永远不会脱离文档流,做相对定位
+		子盒子不会脱离父盒子,做绝对定位
+	
+		fixed:固定
+css3：
+	1、边框 ：圆角
+	2、图片变形: transform: scale拉伸  rotate旋转   translate移动
+	3、渐变色 linear-gradient(top,bottom,red,blue)
+	兼容性:
+		moz 火狐浏览器
+		webkit google和safyri
+		ms ie浏览器 360 腾讯
+		o opera浏览器
+	数据分析:
+		公司采用什么浏览器做适配(兼容)
+js
+	
+
+	
+
 	
 
 	
