@@ -1,0 +1,74 @@
+CSS选择器
+	基本选择器:标签 id class
+	全局选择器
+	伪类选择器:
+		html4 a链接 l-a-h-v
+		html5 
+		鼠标操作:   linked 常态
+			    hover鼠标经过
+			    active点击时
+			    visited访问后
+绝对路径 相对路径
+	http://www.baidu.com/abc/aa.gif
+	绝对路径
+背景属性:
+	html4
+		background-color:背景颜色
+		background-image:背景图片
+		background-repeat:背景重复 4项:repeat-x x轴重复  repeat-y y轴重复 repeat x和y都重复 no-repeat 不重复
+		background-position:背景图片的位置：px 还可以跟 %
+		合着写:background:背景颜色 背景图片 背景重复  背景图片位置
+	html5:
+		background-size:背景尺寸，当背景图片小于外层大小，把背景图片进行拉伸
+	html div（盒子)
+		div无实在意外，把一些html元素放在一起
+		没有宽度，没有高度
+边框属性:
+	边框样式 border-style: solid实线  dashed虚线 dotted 点线  double双线
+	边框粗细 border-width
+	边框颜色 border-color
+	设置边框，这三个属性必须都存在
+	CSS3 border-radius:圆角
+	画圆
+		border-radius的大小应该width+border的一半
+		
+	画三角
+		1、width,height两项为0
+		2、border-style solid
+		3、border-width 三角大小
+		4、border-color:上三角，其实下边的边线有颜色，其余三条边透明色 transparent
+		   换成不同种颜色，就是多彩边，有width height是梯形
+盒子模型(CSS3弹性盒子)
+	div布局思路：盒子模型思路 ，把html所有元素和需要合起来元素都可以理解成盒子
+	盒子模型:四要素(外边距 边框  内边距 内容 ） 六要素(外边距 边框  内边距 内容  宽和高)
+	                margin  border padding content
+	margin:外边距
+		正常情况下：四个参数，四条边距其它盒子之间的距离,顺序从上开始顺时针:   上  右  下  左
+		三个参数:第一参数还是上边，中间参数左右两边，最后一个参数是下边
+		两个参数:平分，第一个参数上下，最后一个参数左右
+		跟一个参数:上右下左都为0
+		margin:0 auto;auto浏览器的大小自动调整盒子的位置，水平居中
+		margin-left margin-top margin-right margin-bottom
+	
+	padding:内边距
+		同margin的配置
+		分边来调整边距
+		四个边:左 left  右 right 上  top  下 bottom
+		padding-left   padding-right padding-top padding-bottom
+	边框 :
+		border-left
+	以上盒子模型只适合pc端布局
+	普遍大小:1190*800
+	1、做一个项目时间(100页面)
+	2、技术量化
+	弹性盒子:
+		手机:苹果:安卓
+		用在移动端
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		弹性盒子，希望盒子随着宽度改变而改变
+		盒子不能定义大小
+		display:flex;指外层盒子，指定弹性盒子
+		flex:1;均分	
+	
+
+	
