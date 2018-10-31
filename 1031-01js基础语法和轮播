@@ -1,0 +1,92 @@
+js	全称:javascript
+	引用js,用<script></script>
+	基本语法:
+		1、基本语句:
+			消息框:alert("信息")
+			确认框:功能开发删除时,confirm('请确定是否要删除')
+			输入框 :prompt输入内容
+			写网页的语句: document.write
+			控制台输出:console.log()
+		2、语法
+			变量: a=10 
+			      var a=10
+			js和python
+				1、python运算同种类型进行运算  str(5)+"23"
+					js运算  5+”23"+true+3.14    5+7+"3"
+				2、三元运算符(冒号运算符) 条件式?结果1:结果2
+						条件式成立走结果1,条件式不成立成结果2
+						4+3>7?1+2:4-3=1
+						"12"+3>96?2-1:6+7
+			
+				3、switch方法(条件判断，跟if相同)
+					switch(值){
+						case 值： break;
+						case 值:break;
+						default:(除了上面提出的case值以外，其它的都可以)
+					}	
+					python字典 a={'A':'优秀','B':'良好','C':'及格'}
+					c in a
+					c not in a
+				if score=='A'{
+				}else if (score=='B'){
+				}else if(score=='c'){
+				}else{
+				}
+				4、两值互换
+					c=a
+					a=b
+					b=c
+				面试:不需要第三方变量实现两值互换
+					a,b=b,a
+					
+					a=a+b 
+					b=a-b 
+					a=a-b
+
+			运算:
+				1、0做除数，js合法.alert(1/0) infinity无穷大
+				2、小数运算都不准，原因小数在计算机存储双精度的问题
+					0.1+0.2>0.3
+					0.3-0.2<0.1
+			js :
+				if语句
+					if(条件){
+					}else if(条件）{
+					}else{
+					}
+
+				 循环:  i++表示的i+=1 i--表示 i=i-1 
+					i+=2          i-=2
+					while(条件）{
+					}
+					for(初值;条件;累加的方式){
+					}
+					for(i=1;i<=100;i+=1){
+					}
+轮播:
+	css超出部分隐藏: overflow:hidden
+	
+	js定时器:不间断的定时器 setInterval(function(){
+	},毫秒数)
+		一次的定时器 setTimeout(function(){
+		},毫秒数)
+	js按id的值来控制元素 document.getElementById("id名字")
+	js按标签来取元素 document.getElementsByTagName("li")按html标签来取
+	轮播无缝连接：轮播多加一张首图
+	手动停止定时器 clearInterval(定时器的名字)
+		用什么方法判断走过的距离以某个数的倍数 距离 % 特定的数 ==0
+		                                         /取整 
+	js事件：
+	onclick点击事件
+	onmousedown鼠标按下事件
+	onmouseup鼠标抬起事件
+	onmouseover鼠标经过
+	onmouseout鼠标移开
+	onkey键盘按下
+	使用方法 ：document.getElementById("aa").onclick=function(){
+		}
+	
+	function可以定义函数:
+	let块级作用域
+js机制:
+	js是一单线程。异步来解决阻塞
