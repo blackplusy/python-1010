@@ -90,3 +90,60 @@ js	全称:javascript
 	let块级作用域
 js机制:
 	js是一单线程。异步来解决阻塞
+		阻塞线程的 setTimeout
+			setInterval()
+	js先执行线程不进行线程阻塞的代码，先去执行，再去处理setTimeout或setInterval
+	Promise前端发送请求给后端，技术这个请求预判，预判成功会怎么样，预判失败会怎么样?
+	       连环请求,会阻塞js线程 
+	先处理不阻塞线程的代码，然后处理Promise的请求,再去处理setTimeout setInterval
+	
+	setTimeout setInterval计时不是准确的
+AJAX： xml后端给前端的数据格式，指自定义的标签文字 webxml.com.cn
+		<?xml version=1.0 encoding='utf8' ?>
+		<book>
+			<name>羽名</name>
+			<publish-time>1920-12</publish-time>
+		</book>
+		<book>
+			<name>.....</name>
+			<publish-time>.....</publish-time>
+		</booK>
+	json数据:[{'name':'zzz','publish-time':'2220'},{'name':'yyyy','pulish-time':'2220'}] 聚合数据
+	前端和后端通信的技术:
+		1\、异步  2、局部刷新技术
+	
+		原生ajax
+			非ie
+				XMLHttpRequest() AJAC原生对象
+				xhr=new XMLHttpRequest()
+				xhr.open('方式GET','地址',true)
+				xhr.send()
+				xhr.onreadystatechange=function(){
+					if (xhr.readyState==4 && xhr.status==200){
+						返回的内容在xhr.responseText
+					}			
+				}
+			地址换成请求的非本域的地址，显示：同源策略禁止访问
+			跨域访问:jquery jsonp跨域访问技术
+			加载json数据,返回json
+			http://api.douban.com/book/subject/1220562?alt=json
+			
+jquery流行
+	$相当于Jquery
+		取id $("#id名")
+		取class $(".类名")
+		取标签 $("标签名")
+	设文字:
+		$("标签").text()设置两个标签之间的文字
+		$("标签").html()设置两个标签内容可以是html格式
+		$("标签").val()只设置文本框
+	设样式:
+		$("标签").css({属性名:属性})
+		图片路径,标签的属性
+		$("标签").attr("src")
+	设动画
+		$("标签").animate({
+			width:
+		},2000);
+	$("标签").hide()隐藏
+
