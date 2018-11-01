@@ -1,0 +1,111 @@
+django
+	1、python web
+	2、mvc开发模式:
+		m--models   v----views   c----controls
+		数据          视图          控制
+		用户登陆
+		从数据库取出用户 用户名密码登陆  用户的输入是否与数据库一致
+		
+	3、mvt开发模式
+		m--models v---views   t-templates
+		数据       视图和控制   模板
+	4、django工作原理:
+		客户端 http请求--------->jdango urls.py里面找访问的路径对应的方法 --------->在 views.py里面找对应的方法名，方法里就会有逻辑，逻辑可能包含models操作------->models操作------>models操作数据库的结果返回------>views.py方法必须要到templates里找模板----->处理其它逻辑------->templates找模板------>返回浏览器
+	5、django框架产生
+		安装django:pip3 install  django
+		产生django项目: django-admin startproject 项目名称
+		进入到当前项目目录下 cd 项目名称
+		产生django应用:django-admin startapp 应用名称
+		django的目录结构:
+			项目文件夹:
+					settings.py  django配置文件
+					urls.py 路径文件,http://localhost/abc.html django地址栏的管理文件
+			应用名字的文件夹:
+					models.py 数据模型文件
+					views.py 视图文件(用户是哪一个页面)
+				数据集合:
+					在建立数据库时:create database mydemo default charset=utf8;字体提前指定给数据库
+				配置数据库:
+					先进入项目文件夹 ：
+					操作settings.py文件:vi settings.py
+						先操作两个地方:
+							1、第一个添加应用:INSTALLED_APPS=[
+								'user'
+							]
+							2、DATABASES={
+								把原有sqlite3改成mysql,
+								'NAME':冒号后面的全部删掉，改成你建的数据库的名字
+								然后添加四项:
+								'HOST':mysql服务器主机,用localhost
+								'PORT':3306,必须是整形
+								'USER':'root'登录数据库的用户名，我们用的root
+								'PASSWORD':'登陆数据库用户名对应的密码
+								注意：每一个语句后用,隔开 
+								
+							}
+					数据库跟models.py有关系，
+						在models建类,类的属性就是数据库表的字段，django方法操作数据库，这种方法叫ORM关系模型,对象关系模型
+						models.py在应用目录下:
+							username varchar(20)对应的语句
+							username=models.CharField(max_length=20)
+
+					利用django写到数据库里面(同步技术， 同步到数据库)
+						python3 manage.py makemigrations(产生User表）
+						python3 manage.py migrate(写到数据库)
+					报MySQLdb模块错
+						找到项目文件夹:
+							__init__.py				
+								import pymysql
+							pymysql.install_as_MySQLdb()
+			用views访问templates(在地址栏敲入一个地址可以访问一个页面)
+				启动django
+					python3 manage.py runserver
+					启动了django服务器
+				实现访问的目的，修改urls.py(项目文件夹)
+					建立urls.py对应关系:
+					views模块位置 from 应用名 import views
+					url模块位置 from django.conf.urls import url
+					url('index/',views.index)views方法里index是我们自己定义的
+				
+				建立模板(html文件)
+					settings.py
+						模板位置 ：
+								TEMPLATES里面有一个DIRS:[]
+								在[]里写os.path.join(BASE_DIR,'templates')
+					在manage.py同一级目录下建一个templates
+							进入到 templates中建立一个网页
+						
+							
+				写views.py(应用文件夹下):
+					(在models里面我们写类，在views里面写的是方法)
+					def 方法有一个默认参数request
+					
+					 def index(request):
+						return render(request,'index.html')
+				启动django服务器:
+					python3 manage.py runserver
+				把models结果放到网页里面
+					可以用界面为models添加数据:
+						1、建立一个用户，用户登陆django admin后台
+							python3 manage.py createsuperuser
+						2、找到自己的user表
+							在应用目录下有admin.py(应用文件夹下)
+								admin.site.register(User)
+				在前端显示记录:
+					1、在views操作models
+						
+							 #templates携带参数必须以字典形式回传
+							user=User.objects.all()
+    							content={'user':user}
+						
+    							return render(request,'index.html',content)
+
+					2、把结果放到templates里的index.html上
+						 <!--in后面的值写的是key值，自动输出key值后面的 value-->
+                				{% for ss in user %}
+                				<!--不加{{}}直接输出ss.username，不是ss.username里面的值，用{{}}
+					输出的是值-->
+                			<h3>{{ss.username}}</h3>
+                			<h3>{{ss.password}}</h3>
+                			{% endfor %}
+
