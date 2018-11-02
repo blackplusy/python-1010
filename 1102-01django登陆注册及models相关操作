@@ -1,0 +1,146 @@
+django
+	django整合前端做好的页面：
+		如果要引入前端开发用的css,js,images里面的文件，需要设置静态路径
+		在settings.py里面最后一句:
+		STATICFILES_DIRS=[
+        		os.path.join(BASE_DIR,'static')
+        	]
+		在templates同级目录下建一个static目录，然后把css,js,images拷贝到static目录下
+		STATIC_URL = '/static/'设置跟html文件引用相关路径有关，在引用的相关路径前加'/static/'
+		简单实现登录和注册:
+		注册:
+			把数据写到数据库
+			思路：
+				先把注册页面显示出来(显示，需要一个地址去访问，django需要一个urls.py的地址与方法对应)
+				把表单填写完毕，提交，需要一个后台地址去处理（处理地址，也需要一个urls.py的地址与方法对应）
+			结论：凡是与表单提交有关系的操作，urls.py都需要两个地址和两个方法对应
+			要想获取前端页面表单上的数据，必须为前端表单的元素上加name属性
+			取表单数据
+				request.请求方式（GET/POST).get('username') /*get()里面的就是前端页面表单元素的name属性*/
+			注意:
+				urls.py写注册表单的action提交地址
+				前端页面action=""提交地址
+			做表单类的操作时，先把settings.py里面的MIDDLEWARE里面的
+			#'django.middleware.csrf.CsrfViewMiddleware',
+			user=User()
+			user.username=username
+			user.password=password
+			user.save()
+			django利用ORM模型向数据库插入一条记录
+			目前数据库是可以重名注册
+			不重名思路
+				有username，看数据库有没有这个username,
+
+			python3 manage.py shell
+				这个指令可以根据当前项目进行操作.
+
+		登录:
+			把数据库记录与用户输入进行对比
+			所前端页面的表单数据接收
+			request.POST.get('username')
+			再把数据从数据库中用filter取出，get取可能报错
+				obj=User.objects.filter(username=username)
+				判断obj集合的长度 为0，没有这个用户名
+				if len(obj)==0:
+					重定向到注册页面
+				else:
+					判断用户名和密码是否相等.
+					 if obj[0].username==username and obj[0].password==password:#obj[0]原因是filter出来是一个集合，不是一个对象
+            					return HttpResponse('登陆成功!')
+
+
+		User.objects.all()
+			显示全部记录，但不显示内容 
+		User.objects.values()
+			显示全部记录的内容 
+		User.objects.get(username=值)
+			取出一个对象，多个对象报错,没有也报错,出来一个对象 la.username
+		User.objects.filter(username=值)
+			可以返回多个对象,没有不报错，返回空集合，出来是集合，就算是一个元素，也是一个集合 la[0].username
+		django views修改内容:
+			1、templates目录里面html文件需不需 要修改 action要写 ,name要写
+			2、项目文件夹下的urls.py里面有没有路径匹配
+			3、需要settings.py的设置
+			4、看一下启动的服务有没有报错
+		登陆和注册基本功能,考虑:
+			1、密码和再次密码两次密码验证
+			2、密码加密 
+				（1）先把models.py里面的password改成64位字符串
+				 (2)重新同步一下数据库:python3 manage.py makemigrations  python3 manage.py migrate
+						decode解码   encode('utf8')
+		models实现数据库的增删查改
+		增
+			user=User()
+			user.username=username
+			user.password=password
+			user.save()
+		删除:
+			pk___primary key
+			user=User.objects.get(pk=1)
+			user.delete()
+		查:
+			filter列表 包含这个元素 filter(username=,password=)两个条件都可以
+			exclude(除外）除掉这个结果
+			contains中间包含  startswith开头有,    endswith结尾有
+			查姓刘的数据
+				User.objects.all().filter(username__startswith='刘')
+			查找地址是高新园的信息：
+				User.objects.all().filter(address__contains='高新园').values()
+			大于gt  小于lt  大于等于gte  小于等于lte
+				__
+			查询age大于20的记录
+				User.objects.all().filter(age__gt=20).values()
+			查询价格在10-30之间
+				User.objects.all().filter(address__contains='高新园').values()
+			查询价格在小于 10,大于30之间
+				User.objects.all().exclude(price__gt=10,price__lt=30).values()
+			查询2001年1月之前出生的人
+				 User.objects.all().filter(birth__lt='2001-01-01').values()  
+			统计函数:
+				aggregate(统计函数)
+				平均年龄
+				User.objects.all().aggregate(Avg('age'))    
+				数据表有多少个记录
+				User.objects.all().aggregate(Count('username')) 
+				 User.objects.count()  
+			分组:
+				django注意:
+				1、考虑问题，django只对关键字分组
+				2、分组一定要统计
+				annotate()按前面写的类的名对应的表的id来分组
+				Banji.objects.all().annotate指的是按Banji对应的 banji表的id来进行分组
+				只要班级和用户表建立了关系（多对多，一对多，外键)
+				班级找到用户，用户也可以找到班级,都是小写的表名
+				每个班级里面有多少人:
+					Banji.objects.all().annotate(av=Count('user')).values('av','id')  
+				每个有几个班级:
+					User.objects.all().annotate(av=Count('banji')).values('av','id') 
+				每个班级的人的平均价格
+					Banji.objects.all().annotate(lv=Avg('user__price')).values('lv','id','name') 
+				每个班级的人的年龄总和:
+					Banji.objects.all().annotate(kv=Sum('user__age')).values('kv','id','name')
+					找到表后加两个下划线可以找到对应字段
+				
+					
+				
+			外:
+				一对多:banji=models.ForeignKey(to='Banji',on_delete=models.CASCADE)on_delete=models.CASCADE删除时发生级联
+				Banji前后均可，正常来讲，放前面即可
+				多对多:models.ManyToManyField()
+				一对一:models.OneToOneField()
+			get对象
+		改
+			update banji set name='3' where id=2
+			banji=Banji.objects.get(pk=2)
+			banji.name='三班'
+			banji.save()
+练习:
+	1\models字段
+	2\完成登陆和注册
+	3\做models的操作
+			
+			
+			
+		
+		
+		
